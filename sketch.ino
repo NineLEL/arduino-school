@@ -1,4 +1,4 @@
-#include <DHT.h>
+  #include <DHT.h>
 // #include <LiquidCrystal_I2C.h>
 
 // กำหนดขาเซนเซอร์และอุปกรณ์
@@ -20,9 +20,9 @@ unsigned long lastWaterTime = 0;
 unsigned long lastFertilizeTime = 0;
 const int moistureThreshold = 512; // 50% moisture (in ADC) - เกณฑ์ความชื้นดินที่ต้องการ
 const int temperatureThreshold = 35; // 35°C - เกณฑ์อุณหภูมิที่ต้องการ
-const unsigned long waterInterval = 10800000; // 3 ชั่วโมง (10800000 ms) - เวลาที่รดน้ำ
-const unsigned long fertilizeInterval = 432000000; // 5 วัน (432000000 ms) - เวลาที่ใช้ในการให้ปุ๋ย
-const unsigned long pumpDuration = 10000; // ปั๊มน้ำทำงาน 10000 วินาที - ระยะเวลาที่ปั๊มน้ำจะทำงาน
+const unsigned long waterInterval = 10000; // 3 ชั่วโมง (10800000 ms) - เวลาที่รดน้ำ
+const unsigned long fertilizeInterval = 15000; // 5 วัน (432000000 ms) - เวลาที่ใช้ในการให้ปุ๋ย
+const unsigned long pumpDuration = 1500; // ปั๊มน้ำทำงาน 1.5 วินาที - ระยะเวลาที่ปั๊มน้ำจะทำงาน
 
 unsigned long lastFertilized = 0; // เก็บเวลาการให้ปุ๋ยล่าสุด
 unsigned long pumpStartTime = 0; // เก็บเวลาเริ่มปั๊มน้ำ
@@ -32,7 +32,7 @@ int wateringCount = 0; // จำนวนครั้งที่รดน้ำ
 // ฟังก์ชันอ่านค่าความชื้นดิน
 void readSoilMoisture(float &moisturePercent) {
   int moistureValue = analogRead(soilMoisturePin); // อ่านค่าความชื้นดิน
-  moisturePercent = map(moistureValue, 0, 1023, 0, 100); // แปลง ADC เป็นเปอร์เซ็นต์
+  moisturePercent = map(moistureValue, 0, 1023, 0, 100); // แปลง ADC เป็นเปอร์เซ็นต์                                                               
   // moisturePercent = 49;
 }
 
@@ -156,5 +156,5 @@ void loop() {
 
   // การให้ปุ๋ย
   fertilize(moisturePercent, temperature);
-  delay(4000);
+  delay(1000);
 }
